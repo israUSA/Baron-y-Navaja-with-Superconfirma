@@ -29,10 +29,18 @@ const panels = [
 ];
 
 const facts = [
-  { value: "18.500+", label: "cortes desde 2014" },
-  { value: "4,9", label: "en Google · 1.450 reseñas" },
-  { value: "4", label: "barberos en el sillón" },
+  { target: 18500, decimals: 0, suffix: "+", value: "18.500+", label: "cortes desde 2014" },
+  { target: 4.9, decimals: 1, suffix: "", value: "4,9", label: "en Google · 1.450 reseñas" },
+  { target: 4, decimals: 0, suffix: "", value: "4", label: "barberos en el sillón" },
   { value: "Café o whisky", label: "mientras esperas" },
+];
+
+const headline = [
+  { word: "Tijera," },
+  { word: "navaja" },
+  { word: "y" },
+  { word: "toalla", em: true },
+  { word: "caliente.", em: true },
 ];
 ---
 
@@ -43,10 +51,23 @@ const facts = [
         <p data-reveal class="eyebrow">Barbería clásica · La Carolina, Quito</p>
 
         <h1
-          data-reveal
           class="font-display text-[clamp(44px,6vw,88px)] leading-[0.95] font-medium tracking-[-0.02em] text-snow"
+          aria-label="Tijera, navaja y toalla caliente."
         >
-          Tijera, navaja y <em class="font-normal text-gold italic">toalla caliente.</em>
+          {
+            headline.map((item, i) => (
+              <>
+                <span class="rise-word" aria-hidden="true">
+                  <span
+                    style={`--i: ${i}`}
+                    class:list={[item.em && "font-normal text-gold italic"]}
+                  >
+                    {item.word}
+                  </span>
+                </span>{" "}
+              </>
+            ))
+          }
         </h1>
 
         <p data-reveal class="max-w-[560px] text-[16px] leading-[1.7] text-silver">
@@ -63,14 +84,18 @@ const facts = [
         </div>
       </div>
 
-      <div class="relative lg:col-span-5" data-reveal="fade">
-        <div class="relative aspect-[4/3] overflow-hidden rounded-[4px] sm:aspect-[5/4] lg:aspect-[4/5]">
+      <div class="relative lg:col-span-5">
+        <div
+          data-reveal="image-side"
+          class="relative aspect-[4/3] overflow-hidden rounded-[4px] sm:aspect-[5/4] lg:aspect-[4/5]"
+        >
           <img
             src="/images/hero-barberia.jpg"
             alt="Interior de la barbería con la fila de sillones clásicos y lámparas colgantes"
             loading="eager"
             fetchpriority="high"
-            class="h-full w-full object-cover"
+            data-parallax="0.12"
+            class="absolute inset-x-0 -top-[9%] h-[118%] w-full object-cover"
           />
           <div class="absolute inset-0 bg-linear-to-t from-night/60 via-transparent to-transparent"></div>
           <p class="absolute right-5 bottom-4 text-[10px] tracking-[0.22em] text-snow/80 uppercase">
@@ -80,6 +105,8 @@ const facts = [
         <div
           class="absolute -bottom-10 -left-10 hidden h-[170px] w-[170px] rounded-full bg-night p-1.5 lg:block"
           aria-hidden="true"
+          data-reveal="fade"
+          style="--reveal-delay: 900ms"
         >
           <svg viewBox="0 0 200 200" class="animate-spin-slow absolute inset-0 h-full w-full">
             <defs>
@@ -94,7 +121,7 @@ const facts = [
             </text>
           </svg>
           <div class="absolute inset-[42px] flex flex-col items-center justify-center rounded-full border border-gold/40">
-            <Icon name="scissors" class="h-7 w-7 text-gold" strokeWidth={1.5} />
+            <Icon name="scissors" class="snip h-7 w-7 text-gold" strokeWidth={1.5} />
             <span class="mt-1 font-display text-sm text-snow italic">est. 2014</span>
           </div>
         </div>
@@ -117,7 +144,18 @@ const facts = [
             ]}
           >
             <dt class="order-2 text-[12px] text-steel">{fact.label}</dt>
-            <dd class="order-1 font-display text-[26px] leading-none text-snow">{fact.value}</dd>
+            <dd class="order-1 font-display text-[26px] leading-none text-snow">
+              {fact.target === undefined ? (
+                fact.value
+              ) : (
+                <>
+                  <span data-counter data-target={fact.target} data-decimals={fact.decimals}>
+                    {fact.value.replace(fact.suffix, "")}
+                  </span>
+                  {fact.suffix}
+                </>
+              )}
+            </dd>
           </div>
         ))
       }
@@ -127,7 +165,7 @@ const facts = [
       {
         panels.map((panel, i) => (
           <article
-            data-reveal
+            data-reveal="image"
             class:list={[
               "triptych-panel group p-5",
               i === 1 ? "h-[440px] md:h-[480px]" : "h-[400px]",

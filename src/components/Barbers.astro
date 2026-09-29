@@ -60,12 +60,12 @@ const barbers = [
       {
         barbers.map((barber, i) => (
           <article data-reveal class="group flex flex-col">
-            <div class="relative aspect-[4/5] w-full overflow-hidden rounded-[4px]">
+            <div data-reveal="image" class="relative aspect-[4/5] w-full overflow-hidden rounded-[4px]">
               <img
                 src={barber.image}
                 alt={barber.alt}
                 loading="lazy"
-                class="h-full w-full object-cover grayscale-[40%] transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
+                class="h-full w-full object-cover grayscale-[40%] transition-[filter] duration-700 group-hover:grayscale-0"
               />
               <span class="absolute top-4 left-4 font-display text-[15px] text-snow/80 italic">
                 0{i + 1}

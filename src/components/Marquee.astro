@@ -1,0 +1,32 @@
+---
+import Icon from "./Icon.astro";
+
+const words = [
+  "Corte clásico",
+  "Afeitado a navaja",
+  "Toalla caliente",
+  "Arreglo de barba",
+  "Degradado",
+  "Café por la casa",
+];
+
+// Dos pistas idénticas: cuando la primera sale por completo, la segunda ocupa su lugar
+const tracks = [false, true];
+---
+
+<div class="marquee" aria-label={words.join(", ")}>
+  {
+    tracks.map((isCopy) => (
+      <div class="marquee-track" aria-hidden={isCopy ? "true" : undefined}>
+        {words.map((word, i) => (
+          <>
+            <span class:list={["marquee-word", i % 2 === 1 ? "is-outline" : "text-snow"]}>
+              {word}
+            </span>
+            <Icon name="scissors" class="h-7 w-7 shrink-0 text-gold" strokeWidth={1.4} />
+          </>
+        ))}
+      </div>
+    ))
+  }
+</div>

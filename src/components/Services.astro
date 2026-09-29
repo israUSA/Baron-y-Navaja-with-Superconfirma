@@ -6,18 +6,21 @@ const services = [
     duration: "40 min",
     desc: "Vemos juntos qué te queda según tu cara, corte a tijera o máquina, lavado y peinado.",
     note: "El más pedido",
+    image: "/images/panel-cortes.jpg",
   },
   {
     name: "Afeitado a navaja",
     price: 15,
     duration: "35 min",
     desc: "Aceite antes de afeitar, dos toallas calientes, navaja y loción sin alcohol.",
+    image: "/images/panel-afeitado.jpg",
   },
   {
     name: "Arreglo de barba",
     price: 12,
     duration: "30 min",
     desc: "Perfilado de mejilla y cuello a navaja, rebaje de volumen y aceite nutritivo.",
+    image: "/images/panel-barba.jpg",
   },
   {
     name: "El Completo del Barón",
@@ -25,6 +28,7 @@ const services = [
     duration: "65 min",
     desc: "Corte, barba con toalla caliente y masaje de cabeza. Incluye café de especialidad o un whisky.",
     note: "Todo incluido",
+    image: "/images/barber-mateo.jpg",
   },
 ];
 ---
@@ -45,7 +49,7 @@ const services = [
       <div class="border-t border-line">
         {
           services.map((service) => (
-            <article data-reveal class="menu-row group">
+            <article data-reveal="right" data-preview={service.image} class="menu-row group">
               <div class="menu-leader">
                 <h3 class="font-display text-[clamp(22px,2.4vw,30px)] leading-tight text-snow transition-colors duration-300 group-hover:text-gold">
                   {service.name}
@@ -69,5 +73,9 @@ const services = [
         }
       </div>
     </div>
+  </div>
+
+  <div class="menu-preview" data-menu-preview aria-hidden="true">
+    {services.map((service) => <img src={service.image} alt="" loading="lazy" data-src={service.image} class="opacity-0" />)}
   </div>
 </section>
