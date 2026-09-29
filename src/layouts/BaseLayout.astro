@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = "BARÓN & NAVAJA · Taller de Barbería Clásica en Madrid",
-  description = "Taller de barbería artesanal en Barrio de Salamanca, Madrid. Cortes clásicos y fades, afeitado a navaja caliente y ritual de barba. Reserva tu turno online.",
+  title = "BARÓN & NAVAJA · Barbería Clásica en Quito",
+  description = "Barbería clásica en La Carolina, Quito. Cortes a tijera y degradados, afeitado a navaja con toalla caliente y arreglo de barba. Reserva tu turno en línea.",
 } = Astro.props;
 ---
 
@@ -23,7 +23,7 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap"
       rel="stylesheet"
     />
     <noscript>
@@ -31,8 +31,7 @@ const {
         [data-reveal] {
           opacity: 1 !important;
           transform: none !important;
-          filter: none !important;
-        }
+       }
       </style>
     </noscript>
   </head>
@@ -133,12 +132,12 @@ const {
       }
 
       /* ---------- Booking wizard ---------- */
-      const selectedBarber = { name: "Mateo Silva", price: 38, service: "Experiencia El Barón VIP" };
+      const selectedBarber = { name: "Mateo Silva", price: 32, service: "El Completo del Barón" };
 
       const refreshConfirmCTA = () => {
         const cta = document.querySelector<HTMLElement>("[data-confirm-cta]");
         if (!cta) return;
-        cta.textContent = `CONFIRMAR RESERVA CON ${selectedBarber.name.toUpperCase()} — PAGO EN LA BARBERÍA (${selectedBarber.price}€)`;
+        cta.textContent = `Confirmar reserva con ${selectedBarber.name} · pagas en la barbería ($${selectedBarber.price})`;
       };
 
       const refreshTimesLabel = () => {

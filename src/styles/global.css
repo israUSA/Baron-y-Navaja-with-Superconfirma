@@ -1,31 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-night: #0c0c0f;
-  --color-night-deep: #070709;
-  --color-night-card: #141419;
-  --color-night-raised: #1c1c24;
-  --color-gold: #d4af37;
-  --color-gold-deep: #4a3c1e;
-  --color-line: #262630;
-  --color-snow: #f8f8fa;
-  --color-silver: #a3a3b0;
-  --color-steel: #686875;
+  --color-night: #100e0c;
+  --color-night-deep: #0a0908;
+  --color-night-card: #171512;
+  --color-night-raised: #201d19;
+  --color-gold: #c9a15b;
+  --color-gold-soft: #e0c48f;
+  --color-gold-deep: #5a4526;
+  --color-oxblood: #7a2e26;
+  --color-line: #2c2823;
+  --color-snow: #efe8dc;
+  --color-silver: #b0a797;
+  --color-steel: #7a7266;
 
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Archivo", system-ui, sans-serif;
 
-  --shadow-lift: 0 22px 44px -18px rgb(0 0 0 / 0.65);
-  --shadow-gold: 0 24px 48px -16px rgb(212 175 55 / 0.35);
+  --shadow-lift: 0 22px 44px -18px rgb(0 0 0 / 0.7);
 
-  --animate-kenburns: kenburns 16s ease-in-out infinite alternate;
+  --animate-kenburns: kenburns 18s ease-in-out infinite alternate;
+  --animate-spin-slow: spin 28s linear infinite;
 
   @keyframes kenburns {
     from {
       transform: scale(1) translate(0, 0);
     }
     to {
-      transform: scale(1.1) translate(1.5%, -1%);
+      transform: scale(1.08) translate(1.5%, -1%);
     }
   }
 }
@@ -51,56 +53,59 @@
 
 @layer components {
   .shell {
-    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-20;
+    @apply mx-auto w-full max-w-[1360px] px-5 sm:px-8 lg:px-16;
   }
 
   .eyebrow {
-    @apply text-[11px] font-bold tracking-[0.18em] text-gold uppercase;
+    @apply flex items-center gap-3 text-[11px] font-semibold tracking-[0.24em] text-gold uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-7 bg-gold/70;
   }
 
   .section-title {
-    @apply font-display text-[clamp(28px,3.6vw,38px)] leading-[1.15] font-bold text-snow;
+    @apply font-display text-[clamp(32px,4.2vw,54px)] leading-[1.02] font-medium tracking-[-0.01em] text-snow;
+  }
+
+  .section-title em {
+    @apply font-normal text-gold italic;
   }
 
   .section-sub {
-    @apply max-w-2xl text-[15px] leading-[1.6] text-silver;
+    @apply max-w-xl text-[15px] leading-[1.7] text-silver;
   }
 
-  /* ---------- Buttons ---------- */
-  .btn {
-    @apply relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-md text-[13px] font-bold tracking-[0.08em] uppercase transition-all duration-300;
-  }
-
-  .btn-shine::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 42%,
-      rgb(255 255 255 / 0.4) 50%,
-      transparent 58%
+  /* Poste de barbero: franja diagonal que separa secciones */
+  .pole {
+    height: 10px;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--color-snow) 0 10px,
+      var(--color-oxblood) 10px 20px,
+      var(--color-snow) 20px 30px,
+      var(--color-night) 30px 40px
     );
-    transform: translateX(-130%);
-    transition: transform 0.7s ease;
-    pointer-events: none;
+    opacity: 0.85;
   }
 
-  .btn-shine:hover::after {
-    transform: translateX(130%);
+  /* ---------- Botones ---------- */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2.5 rounded-[3px] text-[12px] font-semibold tracking-[0.14em] uppercase transition-colors duration-300;
   }
 
   .btn-gold {
-    @apply bg-gold px-8 py-4 text-night hover:-translate-y-0.5 hover:brightness-110 hover:shadow-gold;
+    @apply bg-gold px-8 py-4 text-night hover:bg-gold-soft;
   }
 
   .btn-outline {
-    @apply border border-line bg-night-card px-6 py-4 font-semibold tracking-normal text-snow normal-case hover:-translate-y-0.5 hover:border-gold-deep hover:text-gold;
+    @apply border border-snow/25 px-6 py-4 text-snow hover:border-gold hover:text-gold;
   }
 
   /* ---------- Header ---------- */
   .site-header {
-    @apply sticky top-0 z-50 border-b border-line bg-night transition-shadow duration-300;
+    @apply sticky top-0 z-50 border-b border-line bg-night/95 backdrop-blur-sm transition-shadow duration-300;
   }
 
   .site-header.is-scrolled {
@@ -116,7 +121,7 @@
   }
 
   .nav-link {
-    @apply relative text-sm text-silver transition-colors duration-300 hover:text-gold;
+    @apply relative text-[13px] tracking-[0.04em] text-silver transition-colors duration-300 hover:text-snow;
   }
 
   .nav-link::after {
@@ -130,7 +135,7 @@
   }
 
   .nav-link.is-active {
-    @apply font-semibold text-snow;
+    @apply text-snow;
   }
 
   .mobile-menu {
@@ -139,13 +144,13 @@
 
   .mobile-menu.is-open {
     display: block;
-    animation: menu-in 0.35s ease both;
+    animation: menu-in 0.3s ease both;
   }
 
   @keyframes menu-in {
     from {
       opacity: 0;
-      transform: translateY(-8px);
+      transform: translateY(-6px);
     }
     to {
       opacity: 1;
@@ -153,34 +158,48 @@
     }
   }
 
-  /* ---------- Triptych panels ---------- */
+  /* ---------- Paneles del hero ---------- */
   .triptych-panel {
-    @apply relative flex flex-col justify-between overflow-hidden rounded-xl border border-line;
+    @apply relative flex flex-col justify-between overflow-hidden rounded-[4px];
   }
 
   .triptych-panel img {
-    @apply absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out;
+    @apply absolute inset-0 h-full w-full object-cover grayscale-[35%] transition-[filter] duration-700;
   }
 
   .triptych-panel:hover img {
-    transform: scale(1.06);
+    @apply grayscale-0;
   }
 
-  /* ---------- Booking wizard ---------- */
+  /* ---------- Carta de precios ---------- */
+  .menu-row {
+    @apply grid grid-cols-[1fr_auto] items-baseline gap-x-4 border-b border-line py-7;
+  }
+
+  .menu-leader {
+    @apply flex items-baseline gap-3;
+  }
+
+  .menu-leader::after {
+    content: "";
+    @apply mb-1.5 flex-1 border-b border-dotted border-steel/60;
+  }
+
+  /* ---------- Reservas ---------- */
   .wizard-chip {
-    @apply flex cursor-pointer items-center gap-2.5 rounded-lg border border-line bg-night-card p-2.5 text-left transition-all duration-300 hover:border-gold-deep;
+    @apply flex cursor-pointer items-center gap-2.5 rounded-[4px] border border-line bg-night-card p-3 text-left transition-colors duration-300 hover:border-gold-deep;
   }
 
   .wizard-chip .chip-name {
-    @apply text-xs font-medium text-silver;
+    @apply text-[13px] font-medium text-silver;
   }
 
   .wizard-chip .chip-role {
-    @apply text-[10px] text-steel;
+    @apply text-[11px] text-steel;
   }
 
   .wizard-chip.is-selected {
-    @apply border-2 border-gold bg-night-raised;
+    @apply border-gold bg-night-raised;
   }
 
   .wizard-chip.is-selected .chip-name {
@@ -192,15 +211,15 @@
   }
 
   .service-option {
-    @apply flex cursor-pointer items-center justify-between gap-3 rounded-lg border border-line bg-night-card p-3.5 text-left transition-all duration-300 hover:border-gold-deep;
+    @apply flex cursor-pointer items-center justify-between gap-3 rounded-[4px] border border-line bg-night-card p-4 text-left transition-colors duration-300 hover:border-gold-deep;
   }
 
   .service-option .s-name {
-    @apply text-xs font-bold text-silver;
+    @apply text-[13px] font-semibold text-silver;
   }
 
   .service-option.is-selected {
-    @apply border-2 border-gold bg-night-raised;
+    @apply border-gold bg-night-raised;
   }
 
   .service-option.is-selected .s-name {
@@ -208,7 +227,7 @@
   }
 
   .service-radio {
-    @apply flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full text-steel transition-all duration-300;
+    @apply flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full text-steel transition-colors duration-300;
   }
 
   .service-option.is-selected .service-radio {
@@ -216,15 +235,15 @@
   }
 
   .day-pill {
-    @apply flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-line bg-night-card px-2 py-2.5 transition-all duration-300 hover:border-gold-deep;
+    @apply flex cursor-pointer flex-col items-center gap-1 rounded-[4px] border border-line bg-night-card px-2 py-2.5 transition-colors duration-300 hover:border-gold-deep;
   }
 
   .day-pill .day-tag {
-    @apply text-[9px] font-extrabold tracking-[0.08em] text-gold;
+    @apply text-[9px] font-semibold tracking-[0.14em] text-gold;
   }
 
   .day-pill .day-num {
-    @apply text-xs font-bold text-snow;
+    @apply font-display text-[14px] whitespace-nowrap text-snow;
   }
 
   .day-pill.is-selected {
@@ -240,7 +259,7 @@
   }
 
   .hour-pill {
-    @apply flex cursor-pointer items-center justify-center rounded-lg border border-line bg-night-card py-2.5 text-xs font-bold text-silver transition-all duration-300 hover:border-gold-deep hover:text-snow;
+    @apply flex cursor-pointer items-center justify-center rounded-[4px] border border-line bg-night-card py-2.5 font-display text-[15px] text-silver transition-colors duration-300 hover:border-gold-deep hover:text-snow;
   }
 
   .hour-pill.is-selected {
@@ -248,59 +267,43 @@
   }
 
   .input-frame {
-    @apply flex items-center gap-2.5 rounded-lg border border-line bg-night-card px-3.5 py-3 transition-all duration-300 focus-within:border-gold focus-within:shadow-[0_0_0_3px_rgb(212_175_55/0.15)];
+    @apply flex items-center gap-2.5 border-b border-line py-3 transition-colors duration-300 focus-within:border-gold;
   }
 
   .input-frame input {
-    @apply w-full bg-transparent text-xs text-snow placeholder:text-steel outline-none;
+    @apply w-full bg-transparent text-[14px] text-snow placeholder:text-steel outline-none;
   }
 
-  /* ---------- Cards ---------- */
-  .card-lift {
-    @apply transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift;
+  .step-head {
+    @apply flex items-baseline gap-4 border-b border-line pb-3;
+  }
+
+  .step-num {
+    @apply font-display text-[30px] leading-none text-gold italic;
+  }
+
+  .step-title {
+    @apply font-display text-[20px] text-snow;
   }
 }
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Aparición al hacer scroll ---------- */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(36px);
-  filter: blur(6px);
+  transform: translateY(18px);
   transition:
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
   transition-delay: var(--reveal-delay, 0ms);
-}
-
-[data-reveal="left"] {
-  transform: translateX(-48px);
-}
-
-[data-reveal="right"] {
-  transform: translateX(48px);
-}
-
-[data-reveal="zoom"] {
-  transform: scale(0.93);
 }
 
 [data-reveal="fade"] {
   transform: none;
-  filter: none;
-}
-
-@media (max-width: 1023px) {
-  [data-reveal="left"],
-  [data-reveal="right"] {
-    transform: translateY(36px);
-  }
 }
 
 [data-reveal].is-visible {
   opacity: 1;
   transform: none;
-  filter: blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -311,13 +314,11 @@
   [data-reveal] {
     opacity: 1 !important;
     transform: none !important;
-    filter: none !important;
     transition: none !important;
   }
 
   .animate-kenburns,
-  .btn-shine::after {
+  .animate-spin-slow {
     animation: none !important;
-    transition: none !important;
   }
 }

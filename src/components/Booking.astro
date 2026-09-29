@@ -2,73 +2,69 @@
 import Icon from "./Icon.astro";
 
 const barbers = [
-  { icon: "sparkles", name: "Cualquier Barbero", role: "Turno más rápido" },
-  { icon: "circle-check", name: "Mateo Silva", role: "Master Barber", selected: true },
-  { icon: "user", name: "Diego Valdés", role: "Fade Specialist" },
-  { icon: "user", name: "Carlos Mendoza", role: "Barba Specialist" },
-  { icon: "user", name: "Lucas Ferreyra", role: "Stylist & Peinado" },
+  { name: "Cualquier Barbero", role: "El primer turno libre" },
+  { name: "Mateo Silva", role: "Barbero principal", selected: true },
+  { name: "Diego Valdés", role: "Degradados" },
+  { name: "Carlos Mendoza", role: "Barbas" },
+  { name: "Lucas Andrade", role: "Peinados" },
 ];
 
 const services = [
-  { icon: "scissors", name: "Corte Signature", time: "40 min", price: 24 },
-  { icon: "sparkles", name: "Afeitado Tradicional", time: "35 min", price: 20 },
-  { icon: "shield", name: "Esculpido de Barba", time: "30 min", price: 18 },
-  {
-    icon: "crown",
-    name: "Experiencia El Barón VIP",
-    time: "65 min",
-    price: 38,
-    selected: true,
-  },
+  { icon: "scissors", name: "Corte clásico", time: "40 min", price: 18 },
+  { icon: "shield", name: "Afeitado a navaja", time: "35 min", price: 15 },
+  { icon: "user", name: "Arreglo de barba", time: "30 min", price: 12 },
+  { icon: "crown", name: "El Completo del Barón", time: "65 min", price: 32, selected: true },
 ];
 
 const days = [
-  { tag: "HOY", num: "Jue 24" },
-  { tag: "MAÑANA", num: "Vie 25", selected: true },
-  { tag: "SÁB", num: "26 Sep" },
-  { tag: "LUN", num: "28 Sep" },
-  { tag: "MAR", num: "29 Sep" },
+  { tag: "HOY", num: "Mié 30" },
+  { tag: "MAÑANA", num: "Jue 1", selected: true },
+  { tag: "VIE", num: "2 Oct" },
+  { tag: "SÁB", num: "3 Oct" },
+  { tag: "LUN", num: "5 Oct" },
 ];
 
 const hours = ["10:00", "11:30", "14:00", "16:30", "18:00", "19:15"];
 const selectedHour = "16:30";
 
 const trust = [
-  { icon: "shield", text: "Sin cobro anticipado • Pagas tras el servicio" },
-  { icon: "schedule", text: "Cancelación gratuita hasta 2 horas antes" },
-  { icon: "coffee", text: "Whisky de malta o café espresso de cortesía" },
+  "No cobramos nada por adelantado: pagas al terminar.",
+  "Puedes cancelar sin costo hasta 2 horas antes.",
+  "Te confirmamos por WhatsApp.",
 ];
 ---
 
-<section id="reservas" class="border-b border-line bg-night-card">
-  <div class="shell flex flex-col items-center gap-10 py-20">
-    <div class="flex flex-col items-center gap-3.5 text-center" data-reveal-stagger>
-      <p class="eyebrow" data-reveal>SISTEMA DE CITAS EN TIEMPO REAL</p>
-      <h2 class="section-title" data-reveal>Reserva tu Cita en 4 Pasos</h2>
+<section id="reservas" class="bg-night-card">
+  <div class="pole"></div>
+  <div class="shell grid grid-cols-1 gap-12 py-24 lg:grid-cols-12 lg:gap-10">
+    <div class="flex flex-col gap-6 lg:sticky lg:top-32 lg:col-span-4 lg:self-start" data-reveal-stagger>
+      <p class="eyebrow" data-reveal>Reservas en línea</p>
+      <h2 class="section-title" data-reveal>Separa tu turno <em>en un minuto.</em></h2>
       <p class="section-sub" data-reveal>
-        Elige tu maestro barbero, el tratamiento que deseas y tu horario preferido. Confirmación
-        instantánea por WhatsApp.
+        Elige barbero, servicio y hora. Te llega la confirmación por WhatsApp al instante.
       </p>
+      <ul class="flex flex-col gap-3 border-t border-line pt-6" data-reveal>
+        {
+          trust.map((item) => (
+            <li class="flex items-start gap-3 text-[13px] leading-[1.5] text-silver">
+              <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+              {item}
+            </li>
+          ))
+        }
+      </ul>
     </div>
 
     <div
-      data-reveal="zoom"
-      class="flex w-full max-w-[1040px] flex-col gap-8 rounded-2xl border border-gold-deep bg-night p-6 sm:p-9"
+      data-reveal
+      class="flex flex-col gap-10 border border-line bg-night p-6 sm:p-9 lg:col-span-8"
     >
-      <div class="flex flex-col gap-3.5">
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center rounded-md bg-gold px-2.5 py-1 text-[10px] font-extrabold tracking-[0.08em] text-night">
-            PASO 1
-          </span>
-          <h3 class="font-display text-lg font-bold text-snow">
-            Selecciona tu Barbero Preferido
-          </h3>
+      <div class="flex flex-col gap-4">
+        <div class="step-head">
+          <span class="step-num">1</span>
+          <h3 class="step-title">¿Con quién te quieres cortar?</h3>
         </div>
-        <div
-          class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
-          data-select-group
-          data-group-barbers
-        >
+        <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5" data-select-group data-group-barbers>
           {
             barbers.map((barber) => (
               <button
@@ -78,10 +74,6 @@ const trust = [
                 class:list={["wizard-chip", barber.selected && "is-selected"]}
                 aria-pressed={barber.selected ? "true" : "false"}
               >
-                <Icon
-                  name={barber.icon}
-                  class:list={["h-4 w-4 shrink-0", barber.selected ? "text-gold" : "text-steel"]}
-                />
                 <span class="flex min-w-0 flex-col">
                   <span class="chip-name truncate">{barber.name}</span>
                   <span class="chip-role truncate">{barber.role}</span>
@@ -92,20 +84,12 @@ const trust = [
         </div>
       </div>
 
-      <div class="flex flex-col gap-3.5">
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center rounded-md bg-gold px-2.5 py-1 text-[10px] font-extrabold tracking-[0.08em] text-night">
-            PASO 2
-          </span>
-          <h3 class="font-display text-lg font-bold text-snow">
-            Selecciona el Servicio o Experiencia
-          </h3>
+      <div class="flex flex-col gap-4">
+        <div class="step-head">
+          <span class="step-num">2</span>
+          <h3 class="step-title">¿Qué te hacemos?</h3>
         </div>
-        <div
-          class="grid grid-cols-1 gap-3 sm:grid-cols-2"
-          data-select-group
-          data-group-services
-        >
+        <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2" data-select-group data-group-services>
           {
             services.map((service) => (
               <button
@@ -116,15 +100,15 @@ const trust = [
                 class:list={["service-option", service.selected && "is-selected"]}
                 aria-pressed={service.selected ? "true" : "false"}
               >
-                <span class="flex items-center gap-2.5">
-                  <Icon name={service.icon} class="h-4 w-4 shrink-0 text-gold" />
+                <span class="flex items-center gap-3">
+                  <Icon name={service.icon} class="h-4 w-4 shrink-0 text-gold" strokeWidth={1.6} />
                   <span class="flex flex-col">
                     <span class="s-name">{service.name}</span>
-                    <span class="text-[10px] text-steel">{service.time}</span>
+                    <span class="text-[11px] text-steel">{service.time}</span>
                   </span>
                 </span>
-                <span class="flex items-center gap-2.5">
-                  <span class="text-[15px] font-bold text-snow">{service.price}€</span>
+                <span class="flex items-center gap-3">
+                  <span class="font-display text-[18px] text-snow">${service.price}</span>
                   <Icon
                     name={service.selected ? "circle-check" : "circle"}
                     class:list={["service-radio", service.selected && "text-gold"]}
@@ -136,17 +120,15 @@ const trust = [
         </div>
       </div>
 
-      <div class="flex flex-col gap-3.5">
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center rounded-md bg-gold px-2.5 py-1 text-[10px] font-extrabold tracking-[0.08em] text-night">
-            PASO 3
-          </span>
-          <h3 class="font-display text-lg font-bold text-snow">Fecha y Horario Disponible</h3>
+      <div class="flex flex-col gap-4">
+        <div class="step-head">
+          <span class="step-num">3</span>
+          <h3 class="step-title">Día y hora</h3>
         </div>
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div class="flex flex-col gap-3">
-            <p class="text-[11px] font-semibold text-silver">Días Disponibles Esta Semana:</p>
-            <div class="grid grid-cols-3 gap-2.5 sm:grid-cols-5" data-select-group>
+            <p class="text-[12px] text-steel">Esta semana</p>
+            <div class="grid grid-cols-3 gap-2 sm:grid-cols-5" data-select-group>
               {
                 days.map((day) => (
                   <button
@@ -163,10 +145,8 @@ const trust = [
             </div>
           </div>
           <div class="flex flex-col gap-3">
-            <p class="text-[11px] font-semibold text-silver" data-times-label>
-              Horarios con Mateo Silva:
-            </p>
-            <div class="grid grid-cols-3 gap-2.5" data-select-group>
+            <p class="text-[12px] text-steel" data-times-label>Horarios con Mateo Silva:</p>
+            <div class="grid grid-cols-3 gap-2" data-select-group>
               {
                 hours.map((hour) => (
                   <button
@@ -184,74 +164,39 @@ const trust = [
         </div>
       </div>
 
-      <div class="flex flex-col gap-3.5">
-        <div class="flex items-center gap-3">
-          <span class="inline-flex items-center rounded-md bg-gold px-2.5 py-1 text-[10px] font-extrabold tracking-[0.08em] text-night">
-            PASO 4
-          </span>
-          <h3 class="font-display text-lg font-bold text-snow">
-            Tus Datos de Contacto para Confirmación
-          </h3>
+      <div class="flex flex-col gap-4">
+        <div class="step-head">
+          <span class="step-num">4</span>
+          <h3 class="step-title">Tus datos</h3>
         </div>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div class="flex flex-col gap-1.5">
-            <label for="booking-name" class="text-[11px] text-silver">Nombre Completo</label>
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div class="flex flex-col gap-1">
+            <label for="booking-name" class="text-[12px] text-steel">Nombre</label>
             <div class="input-frame">
               <Icon name="user" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input
-                id="booking-name"
-                name="nombre"
-                type="text"
-                placeholder="Ej. Alejandro Morales"
-                autocomplete="name"
-              />
+              <input id="booking-name" name="nombre" type="text" placeholder="Ej. Andrés Paredes" autocomplete="name" />
             </div>
           </div>
-          <div class="flex flex-col gap-1.5">
-            <label for="booking-phone" class="text-[11px] text-silver">Teléfono / WhatsApp</label>
+          <div class="flex flex-col gap-1">
+            <label for="booking-phone" class="text-[12px] text-steel">Celular / WhatsApp</label>
             <div class="input-frame">
               <Icon name="phone" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input
-                id="booking-phone"
-                name="telefono"
-                type="tel"
-                placeholder="Ej. +34 612 345 678"
-                autocomplete="tel"
-              />
+              <input id="booking-phone" name="telefono" type="tel" placeholder="Ej. 099 123 4567" autocomplete="tel" />
             </div>
           </div>
-          <div class="flex flex-col gap-1.5">
-            <label for="booking-notes" class="text-[11px] text-silver">Notas o Preferencias</label>
+          <div class="flex flex-col gap-1">
+            <label for="booking-notes" class="text-[12px] text-steel">Algo que debamos saber</label>
             <div class="input-frame">
               <Icon name="edit" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input
-                id="booking-notes"
-                name="notas"
-                type="text"
-                placeholder="Ej. Café con hielo y corte a tijera"
-              />
+              <input id="booking-notes" name="notas" type="text" placeholder="Ej. Solo tijera, nada de máquina" />
             </div>
           </div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-gold btn-shine w-full py-[18px] text-sm">
-        <Icon name="circle-check" class="h-4.5 w-4.5" strokeWidth={2.2} />
-        <span data-confirm-cta>
-          CONFIRMAR RESERVA CON MATEO SILVA — PAGO EN LA BARBERÍA (38€)
-        </span>
+      <button type="submit" class="btn btn-gold w-full py-5 text-[12px]">
+        <span data-confirm-cta>Confirmar reserva con Mateo Silva · pagas en la barbería ($32)</span>
       </button>
-
-      <div class="flex flex-col items-center justify-center gap-3 border-t border-line pt-5 sm:flex-row sm:gap-7">
-        {
-          trust.map((item) => (
-            <div class="flex items-center gap-1.5">
-              <Icon name={item.icon} class="h-3.5 w-3.5 shrink-0 text-gold" />
-              <p class="text-[11px] text-silver">{item.text}</p>
-            </div>
-          ))
-        }
-      </div>
     </div>
   </div>
 </section>

@@ -1,67 +1,67 @@
 ---
-import Icon from "./Icon.astro";
-
 const hours = [
-  { days: "Lunes a Viernes", time: "09:30 - 20:30" },
-  { days: "Sábados", time: "09:00 - 20:00" },
-  { days: "Domingos & Festivos", time: "Cerrado (Descanso de navajas)" },
+  { days: "Lunes a viernes", time: "09:30 – 20:30" },
+  { days: "Sábados", time: "09:00 – 20:00" },
+  { days: "Domingos y feriados", time: "Cerrado (descanso de navajas)" },
 ];
 
 const contact = [
-  "Calle Serrano 48, Barrio de Salamanca, 28001 Madrid",
-  "Teléfono directo: +34 910 248 930",
-  "WhatsApp Citas: +34 612 345 678",
-  "Email: reservas@baronynavaja.es",
+  { text: "Av. República de El Salvador N34-127 y Suiza, La Carolina, Quito" },
+  { text: "Teléfono: (02) 245 6930", href: "tel:+59322456930" },
+  { text: "WhatsApp: 099 745 6930", href: "https://wa.me/593987456930" },
+  { text: "reservas@baronynavaja.ec", href: "mailto:reservas@baronynavaja.ec" },
 ];
 ---
 
-<footer class="border-t border-line bg-night-deep">
-  <div class="shell flex flex-col gap-10 py-16 pb-10">
-    <div class="grid grid-cols-1 gap-10 md:grid-cols-[1.2fr_1fr_1.2fr] lg:gap-16">
-      <div class="flex flex-col gap-4">
-        <p class="flex items-center gap-2.5 font-display text-xl font-bold tracking-[0.1em] text-snow">
-          <Icon name="scissors" class="h-5 w-5 text-gold" />
-          BARÓN &amp; NAVAJA
+<footer class="bg-night-deep">
+  <div class="pole"></div>
+  <div class="shell flex flex-col gap-14 pt-20 pb-10">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
+      <div class="flex flex-col gap-5 md:col-span-5">
+        <p class="font-display text-[clamp(40px,5vw,64px)] leading-[0.95] font-medium text-snow">
+          Barón <em class="font-normal text-gold italic">&amp;</em> Navaja
         </p>
-        <p class="max-w-sm text-[13px] leading-[1.6] text-silver">
-          Taller de corte masculino clásico, afeitado a navaja caliente y cuidado de barba de alta
-          distinción. Un espacio creado para el caballero moderno.
+        <p class="max-w-sm text-[14px] leading-[1.7] text-silver">
+          Barbería clásica de corte masculino, afeitado a navaja con toalla caliente y cuidado de
+          barba. En Quito desde 2014.
         </p>
       </div>
 
-      <div class="flex flex-col gap-3.5">
-        <p class="text-xs font-bold tracking-[0.14em] text-gold">HORARIO DE ATENCIÓN</p>
+      <div class="flex flex-col gap-4 md:col-span-3 md:col-start-7">
+        <p class="text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">Horario</p>
         <div class="flex flex-col gap-3">
           {
             hours.map((row) => (
               <div class="flex flex-col gap-0.5">
-                <p class="text-xs font-semibold text-snow">{row.days}</p>
-                <p class="text-xs text-steel">{row.time}</p>
+                <p class="text-[13px] text-snow">{row.days}</p>
+                <p class="text-[13px] text-steel">{row.time}</p>
               </div>
             ))
           }
         </div>
       </div>
 
-      <div class="flex flex-col gap-3.5">
-        <p class="text-xs font-bold tracking-[0.14em] text-gold">UBICACIÓN &amp; CONTACTO</p>
-        <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-4 md:col-span-3">
+        <p class="text-[11px] font-semibold tracking-[0.22em] text-gold uppercase">Dónde estamos</p>
+        <div class="flex flex-col gap-2.5">
           {
-            contact.map((line) => (
-              <p class="text-xs leading-[1.5] text-silver">{line}</p>
-            ))
+            contact.map((line) =>
+              line.href ? (
+                <a href={line.href} class="text-[13px] leading-[1.5] text-silver transition-colors hover:text-gold">
+                  {line.text}
+                </a>
+              ) : (
+                <p class="text-[13px] leading-[1.5] text-silver">{line.text}</p>
+              ),
+            )
           }
         </div>
       </div>
     </div>
 
-    <div
-      class="flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row"
-    >
-      <p class="text-xs text-steel">
-        © 2026 BARÓN &amp; NAVAJA — Taller de Barbería. Todos los derechos reservados.
-      </p>
-      <p class="text-xs text-steel">Aviso Legal • Política de Privacidad • Cancelaciones</p>
+    <div class="flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row">
+      <p class="text-[12px] text-steel">© 2026 Barón &amp; Navaja, Quito. Todos los derechos reservados.</p>
+      <p class="text-[12px] text-steel">Aviso legal · Privacidad · Cancelaciones</p>
     </div>
   </div>
 </footer>

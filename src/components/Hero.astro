@@ -4,149 +4,144 @@ import Icon from "./Icon.astro";
 const panels = [
   {
     image: "/images/panel-cortes.jpg",
-    alt: "Barbero realizando un corte clásico a tijera",
-    badge: "01 / TÉCNICA MILIMÉTRICA",
-    price: "24€ • 40 min",
-    title: "Cortes Clásicos & Fades",
-    desc: "Tijera artesanal, Skin Fade, Taper y peinado con pomada mate importada.",
-    featured: false,
+    alt: "Barbero haciendo un corte clásico a tijera",
+    label: "Corte",
+    price: "$18 · 40 min",
+    title: "Corte clásico y degradado",
+    desc: "A tijera o máquina, degradado bajo o medio y peinado con pomada mate.",
   },
   {
     image: "/images/panel-afeitado.jpg",
-    alt: "Afeitado clásico a navaja con toalla caliente",
-    badge: "02 / EL RITUAL SIGNATURE ⭐",
-    price: "20€ • 35 min",
-    title: "Afeitado Clásico a Navaja",
-    desc: "Aceite botánico pre-shave, doble toalla caliente al eucalipto, navaja japonesa y bálsamo facial.",
-    featured: true,
+    alt: "Afeitado a navaja con toalla caliente",
+    label: "La especialidad de la casa",
+    price: "$15 · 35 min",
+    title: "Afeitado a navaja",
+    desc: "Aceite antes de afeitar, dos toallas calientes con eucalipto, navaja y bálsamo para calmar la piel.",
   },
   {
     image: "/images/panel-barba.jpg",
     alt: "Perfilado de barba con navaja",
-    badge: "03 / VISAGISMO & DISEÑO",
-    price: "18€ • 30 min",
-    title: "Esculpido & Ritual Barba",
-    desc: "Perfilado milimétrico de líneas a navaja, rebaje de volumen y tratamiento de nutrición botánica.",
-    featured: false,
+    label: "Barba",
+    price: "$12 · 30 min",
+    title: "Arreglo y perfilado de barba",
+    desc: "Líneas marcadas a navaja, rebaje de volumen según tu cara y aceite para que no pique.",
   },
 ];
 
-const trustPills = [
-  {
-    icon: "check",
-    prefix: "+",
-    target: 18500,
-    decimals: 0,
-    suffix: "",
-    label: " Cortes Realizados",
-  },
-  {
-    icon: "star",
-    prefix: "",
-    target: 4.9,
-    decimals: 1,
-    suffix: " ★ (1,450+ Reseñas Google)",
-    label: "",
-  },
-  { icon: "sparkles", text: "Toalla Caliente & Navaja Libre" },
-  { icon: "coffee", text: "Whisky o Café de Cortesía" },
+const facts = [
+  { value: "18.500+", label: "cortes desde 2014" },
+  { value: "4,9", label: "en Google · 1.450 reseñas" },
+  { value: "4", label: "barberos en el sillón" },
+  { value: "Café o whisky", label: "mientras esperas" },
 ];
 ---
 
-<section id="inicio" class="border-b border-line bg-night">
-  <div class="shell flex flex-col items-center gap-10 py-16 lg:gap-10 lg:py-16">
-    <div class="flex flex-col items-center gap-5 text-center" data-reveal-stagger>
-      <div
-        data-reveal
-        class="inline-flex items-center gap-2 rounded-full border border-gold-deep bg-night-raised px-4 py-1.5"
-      >
-        <Icon name="crown" class="h-3.5 w-3.5 text-gold" />
-        <span class="text-[11px] leading-relaxed font-bold tracking-[0.18em] text-gold lg:whitespace-nowrap">
-          TALLER DE BARBERÍA ARTESANAL • MAESTRÍA DESDE 2014
-        </span>
+<section id="inicio" class="relative overflow-hidden bg-night">
+  <div class="shell flex flex-col gap-14 pt-16 pb-20 lg:pt-20">
+    <div class="grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+      <div class="flex flex-col gap-7 lg:col-span-8" data-reveal-stagger>
+        <p data-reveal class="eyebrow">Barbería clásica · La Carolina, Quito</p>
+
+        <h1
+          data-reveal
+          class="font-display text-[clamp(44px,6.8vw,96px)] leading-[0.95] font-medium tracking-[-0.02em] text-snow"
+        >
+          Tijera, navaja y <em class="font-normal text-gold italic">toalla caliente.</em>
+        </h1>
+
+        <p data-reveal class="max-w-[560px] text-[16px] leading-[1.7] text-silver">
+          Barbería de oficio, de las de antes: cortes a tijera, afeitado a navaja y barba bien
+          perfilada, sin apuros. Te atendemos con o sin cita, y el café va por la casa.
+        </p>
+
+        <div data-reveal class="flex flex-wrap items-center gap-4">
+          <a href="#reservas" class="btn btn-gold">
+            Reservar mi turno
+            <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+          <a href="#servicios" class="btn btn-outline">Ver precios</a>
+        </div>
       </div>
 
-      <h1
-        data-reveal
-        class="max-w-[960px] font-display text-[clamp(38px,5.5vw,60px)] leading-[1.1] font-bold text-snow"
-      >
-        El Arte de la Distinción Masculina.
-      </h1>
-
-      <p data-reveal class="max-w-[820px] text-[17px] leading-[1.6] text-silver">
-        No es solo un corte: es el ritual de precisión que define tu presencia y carácter. Fusionamos
-        la maestría tradicional de la navaja caliente con el estilismo contemporáneo más refinado de
-        la ciudad.
-      </p>
-
-      <div data-reveal class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#reservas" class="btn btn-gold btn-shine">
-          <Icon name="calendar" class="h-4 w-4" strokeWidth={2.2} />
-          RESERVAR TU CITA AHORA
-        </a>
-        <a href="#barberos" class="btn btn-outline">
-          <Icon name="scissors" class="h-4 w-4 text-gold" />
-          Ver Barberos &amp; Tratamientos
-        </a>
-      </div>
-
-      <div data-reveal class="mt-2 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-        {
-          trustPills.map((pill) => (
-            <span class="flex items-center gap-1.5 text-xs font-medium text-silver">
-              <Icon name={pill.icon} class="h-3.5 w-3.5 text-gold" />
-              {pill.text ?? (
-                <>
-                  {pill.prefix}
-                  <span data-counter data-target={pill.target} data-decimals={pill.decimals}>
-                    {pill.target.toLocaleString("en-US", {
-                      minimumFractionDigits: pill.decimals,
-                    })}
-                  </span>
-                  {pill.suffix}
-                  {pill.label}
-                </>
-              )}
-            </span>
-          ))
-        }
+      <div class="hidden justify-end lg:col-span-4 lg:flex" data-reveal="fade">
+        <div class="relative h-[190px] w-[190px]" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="animate-spin-slow absolute inset-0 h-full w-full">
+            <defs>
+              <path id="seal-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+            </defs>
+            <text
+              fill="currentColor"
+              class="text-gold"
+              style="font: 600 13.5px Archivo, sans-serif; letter-spacing: 0.32em;"
+            >
+              <textPath href="#seal-circle">BARÓN &amp; NAVAJA · QUITO · DESDE 2014 ·</textPath>
+            </text>
+          </svg>
+          <div class="absolute inset-[42px] flex flex-col items-center justify-center rounded-full border border-gold/40">
+            <Icon name="scissors" class="h-7 w-7 text-gold" strokeWidth={1.5} />
+            <span class="mt-1 font-display text-sm text-snow italic">est. 2014</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3" data-reveal-stagger>
+    <dl
+      data-reveal
+      class="grid grid-cols-2 border-y border-line lg:grid-cols-4"
+    >
       {
-        panels.map((panel) => (
+        facts.map((fact, i) => (
+          <div
+            class:list={[
+              "flex flex-col gap-1 py-5",
+              i % 2 === 1 && "border-l border-line pl-5",
+              i >= 2 && "border-t border-line lg:border-t-0",
+              i === 2 && "lg:border-l lg:pl-5",
+              i === 3 && "lg:pl-5",
+            ]}
+          >
+            <dt class="order-2 text-[12px] text-steel">{fact.label}</dt>
+            <dd class="order-1 font-display text-[26px] leading-none text-snow">{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-3 md:items-end" data-reveal-stagger>
+      {
+        panels.map((panel, i) => (
           <article
             data-reveal
             class:list={[
-              "triptych-panel card-lift group h-[420px] p-6",
-              panel.featured ? "md:h-[400px] border-gold-deep" : "md:h-[370px]",
+              "triptych-panel group p-5",
+              i === 1 ? "h-[440px] md:h-[480px]" : "h-[400px]",
             ]}
           >
             <img
               src={panel.image}
               alt={panel.alt}
               class="animate-kenburns"
-              loading={panel.featured ? "eager" : "lazy"}
+              loading={i === 1 ? "eager" : "lazy"}
             />
-            <div class="relative flex w-full items-start justify-between gap-2">
+            <div class="absolute inset-0 bg-linear-to-t from-night via-night/30 to-night/10"></div>
+
+            <div class="relative flex items-start justify-between gap-3">
               <span
                 class:list={[
-                  "inline-flex items-center rounded-[14px] border px-3 py-1.5 text-[10px] font-extrabold tracking-[0.08em]",
-                  panel.featured
-                    ? "border-gold bg-gold text-night"
-                    : "border-gold-deep bg-night text-gold",
+                  "text-[10px] font-semibold tracking-[0.22em] uppercase",
+                  i === 1 ? "bg-gold px-2.5 py-1 text-night" : "text-snow",
                 ]}
               >
-                {panel.badge}
+                {panel.label}
               </span>
-              <span class="inline-flex items-center rounded-[14px] border border-line bg-night px-3 py-1.5 text-[11px] font-bold whitespace-nowrap text-gold">
+              <span class="font-display text-[15px] whitespace-nowrap text-gold-soft">
                 {panel.price}
               </span>
             </div>
-            <div class="relative flex w-full flex-col items-start gap-2 rounded-[10px] border border-line bg-night p-4">
-              <h3 class="font-display text-[19px] font-bold text-snow">{panel.title}</h3>
-              <p class="text-xs leading-[1.45] text-silver">{panel.desc}</p>
+
+            <div class="relative flex flex-col gap-2 border-t border-snow/20 pt-4">
+              <h3 class="font-display text-[24px] leading-tight text-snow">{panel.title}</h3>
+              <p class="text-[13px] leading-[1.55] text-silver">{panel.desc}</p>
             </div>
           </article>
         ))
@@ -155,26 +150,21 @@ const trustPills = [
 
     <div
       data-reveal="fade"
-      class="flex w-full flex-col items-start justify-between gap-4 rounded-[10px] border border-gold-deep bg-night-card p-4 sm:flex-row sm:items-center sm:px-6"
+      class="flex w-full flex-col items-start justify-between gap-4 border-l-2 border-gold bg-night-card p-5 sm:flex-row sm:items-center sm:px-7"
     >
-      <div class="flex items-center gap-3">
-        <span class="relative flex h-2.5 w-2.5 shrink-0">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60"></span>
-          <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-gold"></span>
-        </span>
-        <div class="flex flex-col gap-0.5">
-          <p class="text-[13px] font-bold text-snow">
-            4 Maestros Barberos de Turno Hoy (Mateo, Diego, Carlos, Lucas)
-          </p>
-          <p class="text-[11px] text-silver">
-            Próximo turno libre disponible hoy: <span class="font-semibold text-gold">16:30 h</span> con Mateo Silva (Master Barber)
-          </p>
-        </div>
+      <div class="flex flex-col gap-1">
+        <p class="text-[14px] font-semibold text-snow">
+          Hoy atienden Mateo, Diego, Carlos y Lucas.
+        </p>
+        <p class="text-[13px] text-silver">
+          Próximo turno libre: <span class="font-semibold text-gold">16:30</span> con Mateo Silva.
+        </p>
       </div>
-      <a href="#reservas" class="btn btn-gold btn-shine w-full px-[18px] py-2.5 text-xs sm:w-auto">
-        Reservar Este Horario
-        <Icon name="arrow-right" class="h-3.5 w-3.5" strokeWidth={2.4} />
+      <a href="#reservas" class="btn btn-outline w-full px-5 py-3 sm:w-auto">
+        Tomar ese turno
+        <Icon name="arrow-right" class="h-3.5 w-3.5" />
       </a>
     </div>
   </div>
+  <div class="pole"></div>
 </section>

@@ -5,7 +5,7 @@ const links = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
   { label: "Barberos", href: "#barberos" },
-  { label: "El Ritual", href: "#el-ritual" },
+  { label: "Opiniones", href: "#opiniones" },
   { label: "Reservas", href: "#reservas" },
 ];
 ---
@@ -13,18 +13,18 @@ const links = [
 <header class="site-header">
   <div class="shell">
     <div class="header-bar">
-      <a href="#inicio" class="flex items-center gap-3.5" aria-label="BARÓN & NAVAJA - Inicio">
+      <a href="#inicio" class="flex items-center gap-3" aria-label="BARÓN & NAVAJA - Inicio">
         <span
-          class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-night-deep font-display text-lg font-bold text-gold"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-gold/60 font-display text-[15px] text-gold italic"
         >
-          BN
+          B&amp;N
         </span>
-        <span class="flex flex-col gap-0.5">
-          <span class="font-display text-xl font-bold tracking-[0.1em] whitespace-nowrap text-snow">
-            BARÓN &amp; NAVAJA
+        <span class="flex flex-col leading-none">
+          <span class="font-display text-[21px] font-medium tracking-[0.06em] whitespace-nowrap text-snow">
+            Barón &amp; Navaja
           </span>
-          <span class="text-[9px] font-semibold tracking-[0.16em] whitespace-nowrap text-gold">
-            TALLER DE CORTE &amp; AFEITADO CLÁSICO
+          <span class="mt-1.5 text-[9px] font-semibold tracking-[0.28em] whitespace-nowrap text-gold">
+            BARBERÍA CLÁSICA · QUITO
           </span>
         </span>
       </a>
@@ -39,26 +39,20 @@ const links = [
         }
       </nav>
 
-      <div class="hidden items-center gap-3 lg:flex">
+      <div class="hidden items-center gap-5 lg:flex">
         <a
-          href="tel:+34910248930"
-          class="btn btn-shine gap-2 rounded-full border border-line px-4 py-2.5 text-[13px] font-medium tracking-normal text-snow normal-case hover:border-gold-deep hover:text-gold"
+          href="https://wa.me/593987456930"
+          class="inline-flex items-center gap-2 text-[13px] text-silver transition-colors hover:text-gold"
         >
-          <Icon name="message-circle" class="h-3.5 w-3.5 text-gold" />
-          +34 910 248 930
+          <Icon name="message-circle" class="h-4 w-4 text-gold" />
+          099 745 6930
         </a>
-        <a
-          href="#reservas"
-          class="btn btn-shine gap-2 rounded-full bg-night-deep px-5 py-2.5 tracking-normal text-gold hover:-translate-y-0.5 hover:bg-black"
-        >
-          <Icon name="calendar" class="h-3.5 w-3.5" />
-          RESERVAR TURNO
-        </a>
+        <a href="#reservas" class="btn btn-gold px-5 py-3">Reservar turno</a>
       </div>
 
       <button
         type="button"
-        class="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-snow lg:hidden"
+        class="flex h-10 w-10 items-center justify-center rounded-[3px] border border-line text-snow lg:hidden"
         data-menu-toggle
         aria-expanded="false"
         aria-label="Abrir menú"
@@ -75,13 +69,13 @@ const links = [
         links.map((link) => (
           <a
             href={link.href}
-            class="rounded px-3 py-2.5 text-sm text-silver transition-colors hover:bg-night-raised hover:text-gold"
+            class="border-b border-line px-1 py-3 font-display text-xl text-snow transition-colors hover:text-gold"
           >
             {link.label}
           </a>
         ))
       }
-      <a href="#reservas" class="btn btn-gold mt-3 w-full">RESERVAR TURNO</a>
+      <a href="#reservas" class="btn btn-gold mt-4 w-full">Reservar turno</a>
     </nav>
   </div>
 </header>

@@ -1,17 +1,13 @@
----
-import Icon from "./Icon.astro";
----
-
-<div class="overflow-hidden bg-night-deep">
+<div class="bg-night-deep">
   <div class="shell flex items-center justify-between gap-4 py-2.5">
-    <div class="flex min-w-0 items-center gap-2.5">
-      <Icon name="sparkles" class="h-3.5 w-3.5 shrink-0 text-gold" />
-      <p class="truncate text-xs font-medium whitespace-nowrap text-silver">
-        CITAS DISPONIBLES PARA HOY • ATENDEMOS CON Y SIN TURNO PREVIO
-      </p>
-    </div>
-    <p class="hidden shrink-0 text-xs whitespace-nowrap text-gold md:block">
-      Calle Serrano 48, Salamanca • Tel: +34 910 248 930
+    <p class="truncate text-[11px] tracking-[0.12em] whitespace-nowrap text-silver uppercase">
+      Hoy hay turnos libres <span class="mx-2 text-gold">/</span> También atendemos sin cita
+    </p>
+    <p class="hidden shrink-0 text-[11px] tracking-[0.08em] whitespace-nowrap text-silver md:block">
+      Av. República de El Salvador N34-127, Quito
+      <span class="mx-2 text-gold">/</span>
+      <a href="tel:+59322456930" class="text-gold hover:text-gold-soft">(02) 245 6930</a>
     </p>
   </div>
+  <div class="pole h-[6px]"></div>
 </div>

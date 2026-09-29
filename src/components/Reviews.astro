@@ -1,105 +1,67 @@
 ---
-import Icon from "./Icon.astro";
-
 const reviews = [
   {
-    initials: "AV",
     quote:
-      "“La atención de Mateo es de otro planeta. El afeitado con doble toalla caliente y navaja japonesa te renueva por completo. El mejor corte de la ciudad sin discusión.”",
+      "Mateo tiene una mano increíble. El afeitado con las dos toallas calientes te deja como nuevo. Para mí, el mejor corte de Quito.",
     name: "Alejandro Valenzuela",
-    role: "Cliente habitual desde 2021 • Experiencia El Barón VIP",
+    role: "Cliente desde 2021 · El Completo del Barón",
   },
   {
-    initials: "CR",
     quote:
-      "“Puntualidad milimétrica, ambiente de club clásico sofisticado y un degradado impecable por Diego. Tomarte un café de especialidad mientras te atienden es un lujo.”",
-    name: "Carlos Ruiz de Gauna",
-    role: "Empresario • Madrid • Skin Fade & Peinado Pomada",
+      "Llegas a tu hora y te atienden a tu hora. Buen ambiente, buena música y un degradado impecable de Diego. El café mientras esperas suma bastante.",
+    name: "Carlos Ruiz",
+    role: "Cumbayá · Degradado y peinado",
   },
   {
-    initials: "JM",
     quote:
-      "“Por fin un lugar donde entienden la arquitectura de una barba densa. Carlos perfiló los contornos a navaja con una precisión que nunca había experimentado.”",
+      "Tengo la barba tupida y en ningún lado me la dejaban pareja. Carlos me la perfiló a navaja con una paciencia que no había visto antes.",
     name: "Javier Montero",
-    role: "Arquitecto • Madrid • Ritual Integral de Barba",
+    role: "Quito · Arreglo de barba",
   },
 ];
 
-const seals = [
-  {
-    icon: "shield",
-    title: "Navajas Individuales",
-    desc: "Hoja de acero descartable de un solo uso por cliente",
-  },
-  {
-    icon: "sparkles",
-    title: "Toallas al Vapor",
-    desc: "Tratamiento térmico aromatizado con eucalipto",
-  },
-  {
-    icon: "coffee",
-    title: "Bar de Cortesía",
-    desc: "Café arábica de origen o whisky de malta incluido",
-  },
-  {
-    icon: "crown",
-    title: "Sillones Hidráulicos",
-    desc: "Comodidad suprema en cuero artesanal vintage",
-  },
+const details = [
+  { title: "Navaja nueva para cada cliente", desc: "Hoja descartable, se abre frente a ti." },
+  { title: "Toallas calientes", desc: "Al vapor, con eucalipto." },
+  { title: "Café o whisky", desc: "Café de altura ecuatoriano o un whisky, por la casa." },
+  { title: "Sillones clásicos", desc: "Hidráulicos, de cuero, de los que ya no se hacen." },
 ];
 ---
 
-<section id="el-ritual" class="border-b border-line bg-night">
-  <div class="shell flex flex-col items-center gap-12 py-20">
-    <div class="flex flex-col items-center gap-3.5 text-center" data-reveal-stagger>
-      <p class="eyebrow" data-reveal>EXPERIENCIA &amp; CALIDAD INCOMPARABLE</p>
-      <h2 class="section-title" data-reveal>Lo Que Opinan Quienes Viven el Ritual</h2>
-      <p class="section-sub" data-reveal>
-        Más de 1,400 caballeros confían mensualmente su imagen, corte y afeitado a nuestras manos.
-      </p>
+<section id="opiniones" class="bg-night">
+  <div class="shell flex flex-col gap-16 py-24">
+    <div class="flex flex-col gap-6" data-reveal-stagger>
+      <p class="eyebrow" data-reveal>Lo que dicen los clientes</p>
+      <h2 class="section-title max-w-[820px]" data-reveal>
+        Más de 1.400 clientes al mes <em>vuelven por algo.</em>
+      </h2>
     </div>
 
-    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3" data-reveal-stagger>
+    <div class="grid w-full grid-cols-1 gap-10 md:grid-cols-3 md:gap-8" data-reveal-stagger>
       {
         reviews.map((review) => (
-          <figure
-            data-reveal
-            class="card-lift flex flex-col justify-between gap-5 rounded-xl border border-line bg-night-card p-7"
-          >
+          <figure data-reveal class="flex flex-col justify-between gap-8 border-t border-gold/40 pt-6">
             <div class="flex flex-col gap-4">
-              <div class="flex items-center gap-1" aria-label="Valoración: 5 de 5 estrellas">
-                {Array.from({ length: 5 }).map(() => (
-                  <Icon name="star" class="h-3.5 w-3.5 text-gold" filled />
-                ))}
-              </div>
-              <blockquote class="text-sm leading-[1.6] text-snow">{review.quote}</blockquote>
+              <p class="text-[13px] tracking-[0.2em] text-gold" aria-label="5 de 5 estrellas">★★★★★</p>
+              <blockquote class="font-display text-[20px] leading-[1.45] text-snow">
+                “{review.quote}”
+              </blockquote>
             </div>
-            <figcaption class="flex items-center gap-3 border-t border-line pt-4">
-              <span class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-gold-deep bg-night-raised font-display text-[13px] font-bold text-gold">
-                {review.initials}
-              </span>
-              <span class="flex flex-col gap-0.5">
-                <span class="text-[13px] font-bold text-snow">{review.name}</span>
-                <span class="text-[11px] text-steel">{review.role}</span>
-              </span>
+            <figcaption class="flex flex-col gap-0.5">
+              <span class="text-[14px] font-semibold text-snow">{review.name}</span>
+              <span class="text-[12px] text-steel">{review.role}</span>
             </figcaption>
           </figure>
         ))
       }
     </div>
 
-    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+    <div class="grid w-full grid-cols-1 gap-px border-y border-line bg-line sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
       {
-        seals.map((seal) => (
-          <div
-            data-reveal
-            class="card-lift flex items-center gap-3 rounded-[10px] border border-line bg-night-raised p-4 px-5"
-          >
-            <Icon name={seal.icon} class="h-5 w-5 shrink-0 text-gold" strokeWidth={1.8} />
-            <div class="flex flex-col gap-0.5">
-              <p class="text-xs font-bold text-snow">{seal.title}</p>
-              <p class="text-[10px] leading-[1.4] text-steel">{seal.desc}</p>
-            </div>
+        details.map((detail) => (
+          <div data-reveal class="flex flex-col gap-1.5 bg-night px-1 py-6 sm:px-6">
+            <p class="font-display text-[18px] text-snow">{detail.title}</p>
+            <p class="text-[13px] leading-[1.5] text-steel">{detail.desc}</p>
           </div>
         ))
       }

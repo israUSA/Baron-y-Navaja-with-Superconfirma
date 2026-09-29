@@ -1,115 +1,73 @@
 ---
-import Icon from "./Icon.astro";
-
 const services = [
   {
-    icon: "scissors",
-    tag: "POPULAR",
-    name: "Corte Signature & Styling",
-    price: 24,
-    duration: "40 min",
-    desc: "Asesoramiento según facciones, corte a tijera o máquina, lavado con champú refrescante y peinado final.",
-    cta: "RESERVAR ESTE SERVICIO",
-    featured: false,
-  },
-  {
-    icon: "sparkles",
-    tag: "TRADICIÓN",
-    name: "Afeitado Clásico a Navaja",
-    price: 20,
-    duration: "35 min",
-    desc: "Aceite botánico pre-afeitado, doble toalla caliente al vapor, rasurado a navaja y loción astringente sin alcohol.",
-    cta: "RESERVAR ESTE SERVICIO",
-    featured: false,
-  },
-  {
-    icon: "shield",
-    tag: "ESENCIAL",
-    name: "Esculpido & Ritual Barba",
+    name: "Corte clásico",
     price: 18,
-    duration: "30 min",
-    desc: "Perfilado milimétrico de líneas en mejilla y cuello con navaja, rebaje de volumen y aceite nutritivo.",
-    cta: "RESERVAR ESTE SERVICIO",
-    featured: false,
+    duration: "40 min",
+    desc: "Vemos juntos qué te queda según tu cara, corte a tijera o máquina, lavado y peinado.",
+    note: "El más pedido",
   },
   {
-    icon: "crown",
-    tag: "TODO INCLUIDO",
-    name: "Experiencia El Barón VIP",
-    price: 38,
+    name: "Afeitado a navaja",
+    price: 15,
+    duration: "35 min",
+    desc: "Aceite antes de afeitar, dos toallas calientes, navaja y loción sin alcohol.",
+  },
+  {
+    name: "Arreglo de barba",
+    price: 12,
+    duration: "30 min",
+    desc: "Perfilado de mejilla y cuello a navaja, rebaje de volumen y aceite nutritivo.",
+  },
+  {
+    name: "El Completo del Barón",
+    price: 32,
     duration: "65 min",
-    desc: "Corte completo + Ritual de barba con toalla caliente + Masaje craneal relajante y café de especialidad o whisky.",
-    cta: "RESERVAR EXPERIENCIA VIP",
-    featured: true,
+    desc: "Corte, barba con toalla caliente y masaje de cabeza. Incluye café de especialidad o un whisky.",
+    note: "Todo incluido",
   },
 ];
 ---
 
-<section id="servicios" class="border-b border-line bg-night-card">
-  <div class="shell flex flex-col items-center gap-12 py-20">
-    <div class="flex flex-col items-center gap-3.5 text-center" data-reveal-stagger>
-      <p class="eyebrow" data-reveal>CARTA DE SERVICIOS &amp; PRECIOS</p>
-      <h2 class="section-title" data-reveal>Cortes &amp; Tratamientos de Precisión</h2>
+<section id="servicios" class="bg-night-card">
+  <div class="shell grid grid-cols-1 gap-14 py-24 lg:grid-cols-12 lg:gap-10">
+    <div class="flex flex-col gap-6 lg:sticky lg:top-32 lg:col-span-4 lg:self-start" data-reveal-stagger>
+      <p class="eyebrow" data-reveal>Carta de servicios</p>
+      <h2 class="section-title" data-reveal>Precios <em>claros</em>, sin sorpresas.</h2>
       <p class="section-sub" data-reveal>
-        Cada experiencia incluye diagnóstico morfológico, lavado purificante y productos de
-        cosmética masculina premium.
+        Todos los servicios incluyen lavado y productos para el cuidado masculino. Pagas en la
+        barbería, al terminar.
       </p>
+      <a href="#reservas" class="btn btn-gold self-start" data-reveal>Reservar</a>
     </div>
 
-    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4" data-reveal-stagger>
-      {
-        services.map((service) => (
-          <article
-            data-reveal
-            class:list={[
-              "card-lift group flex flex-col justify-between gap-6 rounded-xl border p-6",
-              service.featured
-                ? "border-2 border-gold bg-night-raised"
-                : "border-line bg-night",
-            ]}
-          >
-            <div class="flex flex-col items-start gap-5">
-              <div class="flex w-full items-center justify-between gap-2">
-                <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-night-raised transition-colors duration-500 group-hover:bg-gold group-hover:text-night text-gold">
-                  <Icon name={service.icon} class="h-5 w-5" strokeWidth={1.8} />
-                </span>
-                <span
-                  class:list={[
-                    "inline-flex items-center rounded-[12px] border px-2.5 py-1 text-[10px] font-bold tracking-[0.08em]",
-                    service.featured
-                      ? "border-gold bg-gold text-night"
-                      : "border-line bg-night-raised text-gold",
-                  ]}
-                >
-                  {service.tag}
-                </span>
+    <div class="lg:col-span-7 lg:col-start-6" data-reveal-stagger>
+      <div class="border-t border-line">
+        {
+          services.map((service) => (
+            <article data-reveal class="menu-row group">
+              <div class="menu-leader">
+                <h3 class="font-display text-[clamp(22px,2.4vw,30px)] leading-tight text-snow transition-colors duration-300 group-hover:text-gold">
+                  {service.name}
+                </h3>
               </div>
-
-              <div class="flex flex-col gap-1">
-                <h3 class="font-display text-[19px] font-bold text-snow">{service.name}</h3>
-                <p class="flex items-baseline gap-1.5">
-                  <span class="text-[22px] font-bold text-gold">{service.price}€</span>
-                  <span class="text-[13px] text-steel">• {service.duration}</span>
-                </p>
+              <p class="font-display text-[clamp(22px,2.4vw,30px)] text-gold">${service.price}</p>
+              <div class="col-span-2 mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                <p class="max-w-[520px] text-[14px] leading-[1.6] text-silver">{service.desc}</p>
               </div>
-
-              <p class="text-[13px] leading-5 text-silver">{service.desc}</p>
-            </div>
-
-            <a
-              href="#reservas"
-              class:list={[
-                "btn w-full py-3 tracking-[0.06em]",
-                service.featured
-                  ? "btn-shine bg-gold text-night hover:brightness-110"
-                  : "border border-line bg-transparent text-snow hover:border-gold hover:text-gold",
-              ]}
-            >
-              {service.cta}
-            </a>
-          </article>
-        ))
-      }
+              <p class="col-span-2 mt-3 flex items-center gap-3 text-[11px] tracking-[0.16em] text-steel uppercase">
+                {service.duration}
+                {service.note && (
+                  <>
+                    <span class="text-gold">/</span>
+                    <span class="text-gold">{service.note}</span>
+                  </>
+                )}
+              </p>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
