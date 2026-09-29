@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AnnouncementBar from "../components/AnnouncementBar.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Barbers from "../components/Barbers.astro";
+import Booking from "../components/Booking.astro";
+import Reviews from "../components/Reviews.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout>
+  <AnnouncementBar />
+  <SiteHeader />
+  <main>
+    <Hero />
+    <Services />
+    <Barbers />
+    <Booking />
+    <Reviews />
+  </main>
+  <SiteFooter />
+</BaseLayout>

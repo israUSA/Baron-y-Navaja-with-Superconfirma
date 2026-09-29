@@ -1,0 +1,87 @@
+---
+import Icon from "./Icon.astro";
+
+const links = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Barberos", href: "#barberos" },
+  { label: "El Ritual", href: "#el-ritual" },
+  { label: "Reservas", href: "#reservas" },
+];
+---
+
+<header class="site-header">
+  <div class="shell">
+    <div class="header-bar">
+      <a href="#inicio" class="flex items-center gap-3.5" aria-label="BARÓN & NAVAJA - Inicio">
+        <span
+          class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-night-deep font-display text-lg font-bold text-gold"
+        >
+          BN
+        </span>
+        <span class="flex flex-col gap-0.5">
+          <span class="font-display text-xl font-bold tracking-[0.1em] whitespace-nowrap text-snow">
+            BARÓN &amp; NAVAJA
+          </span>
+          <span class="text-[9px] font-semibold tracking-[0.16em] whitespace-nowrap text-gold">
+            TALLER DE CORTE &amp; AFEITADO CLÁSICO
+          </span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-9 lg:flex" aria-label="Navegación principal">
+        {
+          links.map((link) => (
+            <a href={link.href} class="nav-link" data-nav>
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="hidden items-center gap-3 lg:flex">
+        <a
+          href="tel:+34910248930"
+          class="btn btn-shine gap-2 rounded-full border border-line px-4 py-2.5 text-[13px] font-medium tracking-normal text-snow normal-case hover:border-gold-deep hover:text-gold"
+        >
+          <Icon name="message-circle" class="h-3.5 w-3.5 text-gold" />
+          +34 910 248 930
+        </a>
+        <a
+          href="#reservas"
+          class="btn btn-shine gap-2 rounded-full bg-night-deep px-5 py-2.5 tracking-normal text-gold hover:-translate-y-0.5 hover:bg-black"
+        >
+          <Icon name="calendar" class="h-3.5 w-3.5" />
+          RESERVAR TURNO
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="flex h-10 w-10 items-center justify-center rounded-lg border border-line text-snow lg:hidden"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-label="Abrir menú"
+      >
+        <span data-icon-menu><Icon name="menu" class="h-5 w-5" /></span>
+        <span data-icon-close class="hidden"><Icon name="x" class="h-5 w-5" /></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu lg:hidden" data-mobile-menu>
+    <nav class="flex flex-col gap-1 py-4" aria-label="Navegación móvil">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="rounded px-3 py-2.5 text-sm text-silver transition-colors hover:bg-night-raised hover:text-gold"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a href="#reservas" class="btn btn-gold mt-3 w-full">RESERVAR TURNO</a>
+    </nav>
+  </div>
+</header>

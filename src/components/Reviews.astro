@@ -1,0 +1,108 @@
+---
+import Icon from "./Icon.astro";
+
+const reviews = [
+  {
+    initials: "AV",
+    quote:
+      "“La atención de Mateo es de otro planeta. El afeitado con doble toalla caliente y navaja japonesa te renueva por completo. El mejor corte de la ciudad sin discusión.”",
+    name: "Alejandro Valenzuela",
+    role: "Cliente habitual desde 2021 • Experiencia El Barón VIP",
+  },
+  {
+    initials: "CR",
+    quote:
+      "“Puntualidad milimétrica, ambiente de club clásico sofisticado y un degradado impecable por Diego. Tomarte un café de especialidad mientras te atienden es un lujo.”",
+    name: "Carlos Ruiz de Gauna",
+    role: "Empresario • Madrid • Skin Fade & Peinado Pomada",
+  },
+  {
+    initials: "JM",
+    quote:
+      "“Por fin un lugar donde entienden la arquitectura de una barba densa. Carlos perfiló los contornos a navaja con una precisión que nunca había experimentado.”",
+    name: "Javier Montero",
+    role: "Arquitecto • Madrid • Ritual Integral de Barba",
+  },
+];
+
+const seals = [
+  {
+    icon: "shield",
+    title: "Navajas Individuales",
+    desc: "Hoja de acero descartable de un solo uso por cliente",
+  },
+  {
+    icon: "sparkles",
+    title: "Toallas al Vapor",
+    desc: "Tratamiento térmico aromatizado con eucalipto",
+  },
+  {
+    icon: "coffee",
+    title: "Bar de Cortesía",
+    desc: "Café arábica de origen o whisky de malta incluido",
+  },
+  {
+    icon: "crown",
+    title: "Sillones Hidráulicos",
+    desc: "Comodidad suprema en cuero artesanal vintage",
+  },
+];
+---
+
+<section id="el-ritual" class="border-b border-line bg-night">
+  <div class="shell flex flex-col items-center gap-12 py-20">
+    <div class="flex flex-col items-center gap-3.5 text-center" data-reveal-stagger>
+      <p class="eyebrow" data-reveal>EXPERIENCIA &amp; CALIDAD INCOMPARABLE</p>
+      <h2 class="section-title" data-reveal>Lo Que Opinan Quienes Viven el Ritual</h2>
+      <p class="section-sub" data-reveal>
+        Más de 1,400 caballeros confían mensualmente su imagen, corte y afeitado a nuestras manos.
+      </p>
+    </div>
+
+    <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-3" data-reveal-stagger>
+      {
+        reviews.map((review) => (
+          <figure
+            data-reveal
+            class="card-lift flex flex-col justify-between gap-5 rounded-xl border border-line bg-night-card p-7"
+          >
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center gap-1" aria-label="Valoración: 5 de 5 estrellas">
+                {Array.from({ length: 5 }).map(() => (
+                  <Icon name="star" class="h-3.5 w-3.5 text-gold" filled />
+                ))}
+              </div>
+              <blockquote class="text-sm leading-[1.6] text-snow">{review.quote}</blockquote>
+            </div>
+            <figcaption class="flex items-center gap-3 border-t border-line pt-4">
+              <span class="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full border border-gold-deep bg-night-raised font-display text-[13px] font-bold text-gold">
+                {review.initials}
+              </span>
+              <span class="flex flex-col gap-0.5">
+                <span class="text-[13px] font-bold text-snow">{review.name}</span>
+                <span class="text-[11px] text-steel">{review.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+      {
+        seals.map((seal) => (
+          <div
+            data-reveal
+            class="card-lift flex items-center gap-3 rounded-[10px] border border-line bg-night-raised p-4 px-5"
+          >
+            <Icon name={seal.icon} class="h-5 w-5 shrink-0 text-gold" strokeWidth={1.8} />
+            <div class="flex flex-col gap-0.5">
+              <p class="text-xs font-bold text-snow">{seal.title}</p>
+              <p class="text-[10px] leading-[1.4] text-steel">{seal.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
