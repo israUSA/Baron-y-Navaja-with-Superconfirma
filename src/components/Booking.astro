@@ -55,148 +55,24 @@ const trust = [
       </ul>
     </div>
 
-    <div
-      data-reveal="right"
-      class="flex flex-col gap-10 border border-line bg-night p-6 sm:p-9 lg:col-span-8"
-    >
-      <div class="flex flex-col gap-4">
-        <div class="step-head">
-          <span class="step-num">1</span>
-          <h3 class="step-title">¿Con quién te quieres cortar?</h3>
-        </div>
-        <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5" data-select-group data-group-barbers>
-          {
-            barbers.map((barber) => (
-              <button
-                type="button"
-                data-select-option
-                data-barber-name={barber.name}
-                class:list={["wizard-chip", barber.selected && "is-selected"]}
-                aria-pressed={barber.selected ? "true" : "false"}
-              >
-                <span class="flex min-w-0 flex-col">
-                  <span class="chip-name truncate">{barber.name}</span>
-                  <span class="chip-role truncate">{barber.role}</span>
-                </span>
-              </button>
-            ))
-          }
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <div class="step-head">
-          <span class="step-num">2</span>
-          <h3 class="step-title">¿Qué te hacemos?</h3>
-        </div>
-        <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2" data-select-group data-group-services>
-          {
-            services.map((service) => (
-              <button
-                type="button"
-                data-select-option
-                data-service-name={service.name}
-                data-service-price={service.price}
-                class:list={["service-option", service.selected && "is-selected"]}
-                aria-pressed={service.selected ? "true" : "false"}
-              >
-                <span class="flex items-center gap-3">
-                  <Icon name={service.icon} class="h-4 w-4 shrink-0 text-gold" strokeWidth={1.6} />
-                  <span class="flex flex-col">
-                    <span class="s-name">{service.name}</span>
-                    <span class="text-[11px] text-steel">{service.time}</span>
-                  </span>
-                </span>
-                <span class="flex items-center gap-3">
-                  <span class="font-display text-[18px] text-snow">${service.price}</span>
-                  <Icon
-                    name={service.selected ? "circle-check" : "circle"}
-                    class:list={["service-radio", service.selected && "text-gold"]}
-                  />
-                </span>
-              </button>
-            ))
-          }
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <div class="step-head">
-          <span class="step-num">3</span>
-          <h3 class="step-title">Día y hora</h3>
-        </div>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <div class="flex flex-col gap-3">
-            <p class="text-[12px] text-steel">Esta semana</p>
-            <div class="grid grid-cols-3 gap-2 sm:grid-cols-5" data-select-group>
-              {
-                days.map((day) => (
-                  <button
-                    type="button"
-                    data-select-option
-                    class:list={["day-pill", day.selected && "is-selected"]}
-                    aria-pressed={day.selected ? "true" : "false"}
-                  >
-                    <span class="day-tag">{day.tag}</span>
-                    <span class="day-num">{day.num}</span>
-                  </button>
-                ))
-              }
-            </div>
-          </div>
-          <div class="flex flex-col gap-3">
-            <p class="text-[12px] text-steel" data-times-label>Horarios con Mateo Silva:</p>
-            <div class="grid grid-cols-3 gap-2" data-select-group>
-              {
-                hours.map((hour) => (
-                  <button
-                    type="button"
-                    data-select-option
-                    class:list={["hour-pill", hour === selectedHour && "is-selected"]}
-                    aria-pressed={hour === selectedHour ? "true" : "false"}
-                  >
-                    {hour}
-                  </button>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-4">
-        <div class="step-head">
-          <span class="step-num">4</span>
-          <h3 class="step-title">Tus datos</h3>
-        </div>
-        <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
-          <div class="flex flex-col gap-1">
-            <label for="booking-name" class="text-[12px] text-steel">Nombre</label>
-            <div class="input-frame">
-              <Icon name="user" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input id="booking-name" name="nombre" type="text" placeholder="Ej. Andrés Paredes" autocomplete="name" />
-            </div>
-          </div>
-          <div class="flex flex-col gap-1">
-            <label for="booking-phone" class="text-[12px] text-steel">Celular / WhatsApp</label>
-            <div class="input-frame">
-              <Icon name="phone" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input id="booking-phone" name="telefono" type="tel" placeholder="Ej. 099 123 4567" autocomplete="tel" />
-            </div>
-          </div>
-          <div class="flex flex-col gap-1">
-            <label for="booking-notes" class="text-[12px] text-steel">Algo que debamos saber</label>
-            <div class="input-frame">
-              <Icon name="edit" class="h-3.5 w-3.5 shrink-0 text-steel" />
-              <input id="booking-notes" name="notas" type="text" placeholder="Ej. Solo tijera, nada de máquina" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-gold w-full py-5 text-[12px]">
-        <span data-confirm-cta>Confirmar reserva con Mateo Silva · pagas en la barbería ($32)</span>
-      </button>
+    <style>
+  :root {
+    --sc-accent: #c9a15b;
+    --sc-accent-contrast: #100e0c;
+    --sc-surface: #100e0c;
+    --sc-card: #171512;
+    --sc-ink: #efe8dc;
+  }
+</style>
+ <div class="lg:col-span-8" data-reveal="right">
+      <div id="superconfirma"></div>
+      <script is:inline src="http://localhost:4340/widget.js" data-slug="baron-y-navaja" data-target="#superconfirma"></script>
     </div>
+    
   </div>
 </section>
+
+
+
+
+
